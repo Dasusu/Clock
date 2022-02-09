@@ -56,7 +56,7 @@ struct Alarm {
         return format.string(from: date)
     }
     
-    var repeatText: String? {
+    var repeatText: String {
         switch selectDays {
         case [.saturday, .sunday]:
             return "週末"
@@ -85,27 +85,27 @@ struct Alarm {
 //}
 
 
-//class AddClockCellData {
+class AddClockCellData {
 
-//    enum CellData:Int,CaseIterable {
-//        case repeatTime = 0
-//        case clockTag
-//        case remindSound
-//        case remindLater
-//        var titleName:(title:String,detail:Any) {
-//            switch self {
-//            case .repeatTime:
-//                return (title:"重複", detail:"永不")
-//            case .clockTag:
-//                return (title:"標籤", detail:"鬧鐘")
-//            case .remindSound:
-//                return (title:"提示聲", detail:"雷達")
-//            case .remindLater:
-//                return (title:"稍後提醒", detail:Bool())
-//            }
-//        }
-//        }
-//    }
+    enum CellData:Int,CaseIterable {
+        case repeatTime = 0
+        case clockTag
+        case remindSound
+        case remindLater
+        var titleName:String {
+            switch self {
+            case .repeatTime:
+                return "重複"
+            case .clockTag:
+                return "標籤"
+            case .remindSound:
+                return "提示聲"
+            case .remindLater:
+                return "稍後提醒"
+            }
+        }
+        }
+    }
 
 
 

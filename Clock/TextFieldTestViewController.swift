@@ -7,43 +7,55 @@
 
 import UIKit
 
-protocol UpdateAlarmLabelDelegate: AnyObject {
-    func updateAlarmLabel(tagTextForClock: String)
+protocol TextFieldTestViewControllerDelegate: AnyObject {
+    func updateAlarmLabel(_ tagText:String)
 }
 
-class TextFieldTestViewController: UIViewController {
+class TextFieldTestViewController: UIViewController, Storyboarded {
 
-    weak var updateAlarmLabelDelegate: UpdateAlarmLabelDelegate?
+    
+    weak var updateAlarmLabelDelegate: TextFieldTestViewControllerDelegate?
     
     @IBOutlet weak var tagTextForClock: UITextField!
     
+    var tagText: String = "" {
+        didSet{
+            updateAlarmLabelDelegate?.updateAlarmLabel(tagText)
+        }
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tagTextForClock.text = tagText
+//        tagTextForClock.delegate = self
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
-        if let text = tagTextForClock.text {
-                    
-                    if text == "" { // 若輸入框內為空白，回傳「鬧鐘」
-                        updateAlarmLabelDelegate?.updateAlarmLabel(tagTextForClock:"鬧鐘")
-                    }else { // 若輸入框內不為空白，回傳「輸入框內的文字」
-                        updateAlarmLabelDelegate?.updateAlarmLabel(tagTextForClock: text)
-                    }
-                }
+        if let text = tagTextForClock.text{
+            if text == "" {
+                self.tagText = "鬧鐘"
+            }else{
+                self.tagText = text
             }
+        }
     }
-//每一個頁面都要有一個viewcontroller
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func viewWillAppear(_ animated: Bool) {
+//        if let alarm = alarm {
+//            tagTextForClock.text = alarm.name
+//        }
+//    }
+//}
+//
+//extension TextFieldTestViewController: UITextFieldDelegate{
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        if let alarmModel = alarm {
+//            alarm!.name = textField.text ?? "鬧鐘"
+//            updateAlarmLabelDelegate?.updateAlarmLabel(textField.text ?? "鬧鐘")
+//        }
+//    }
+}
 

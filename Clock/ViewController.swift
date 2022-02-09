@@ -9,15 +9,22 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
     
-    
+//    let view = UIView()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            view.topAnchor.constraint(equalTo: <#T##NSLayoutAnchor<NSLayoutYAxisAnchor>#>)
+//        ])
+//
+//
+//        view.snp.makeConstraints { make in
+//            make.top.leading.trailing.bottom.equalToSuperview()
+//        }
+//    }
+
 
 }
 

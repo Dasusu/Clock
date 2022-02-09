@@ -7,7 +7,28 @@
 
 import UIKit
 
+
 class AddClockTableViewController: UITableViewController, Storyboarded{
+    
+    
+    //TODO: - 這裡用錯了，導致資料只能存一筆
+    //這個也影響你的tableview不能運 所以不能這樣引用嗎?
+    //對
+    //因為viewcontroller是 Class
+    /*
+     你每次按新增的時候，會建立一個新的AddClockTableViewController實體 -> alarmArray.count == 0
+     這個實體也會建立一個新的ClockViewController實體 -> alarmArray.count == 0
+     
+     接著你用ClockView.alarmArray.append(alarm)這個的時候，所有的ClockViewController參考都會被更改 -> alarmArray.count == 1
+     然後你會dismiss，上面的AddClockTableViewController實體跟ClockViewController實體都會被消滅
+     
+     
+     所以我就是在一個 0 1 0 1 的 loop就對了
+     對 了解 
+     
+     
+     */
+    var ClockView = ClockViewController.shared
     
     
     // MARK: Outlet thing
@@ -16,29 +37,72 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
     @IBOutlet weak var repeatDetailLabel: UILabel!
     @IBOutlet weak var tagDetailLabel: UILabel!
     @IBOutlet weak var remindSoundDetailLabel: UILabel!
-    
     @IBOutlet weak var timeUIDatePicker: UIDatePicker!{
         didSet {
             timeUIDatePicker.setValue(UIColor.white, forKeyPath: "textColor")
         }
     }
     
+
+    var alarm = Alarm() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    let cellData = AddClockCellData.CellData.allCases
     
     
     
     // MARK: TableView
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        4
+        cellData.count
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        
+        switch indexPath.row{
+        case 0:
+            cell.detailTextLabel?.text = alarm.repeatText
+        case 1:
+            cell.detailTextLabel?.text = alarm.name
+        case 2:
+            cell.detailTextLabel?.text = "雷達"
+        case 3:
+            let switchButton = UISwitch()
+            switchButton.isOn = alarm.switchButton
+            cell.accessoryView = switchButton
+        default:
+            break
+            
+        }
+        let titleName = cellData[indexPath.row].titleName
+        cell.backgroundColor = .darkGray
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.text = titleName
+        cell.detailTextLabel?.textColor = .white
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+    
+
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
             let vc = DayForClockTableViewController.instantiate()
+            vc.selectDays = alarm.selectDays
+            vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            break
+            let vc = TextFieldTestViewController.instantiate()
+            vc.tagText = alarm.name
+//            vc.alarm = alarm
+            vc.updateAlarmLabelDelegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
         case 2:
             break
         case 3:
@@ -48,8 +112,26 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
         }
     }
     
+    // MARK: DatePicker
     
     
+    
+    
+    
+    
+    
+    
+    
+    // MARK: Navgation Button
+    
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func Save(_ sender: UIBarButtonItem) {
+        ClockView.alarmArray.append(alarm)
+        dismiss(animated: true, completion: nil)
+    }
     
     
     
@@ -191,3 +273,18 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
 //        selectday = selectdays
 //    }
 //}
+
+// MARK: - DayForClockTableViewControllerDelegate
+extension AddClockTableViewController: DayForClockTableViewControllerDelegate {
+    
+    func receiveSelectedDays(_ days: Set<Alarm.RepeatDays>) {
+        self.alarm.selectDays = days
+    }
+}
+
+extension AddClockTableViewController: TextFieldTestViewControllerDelegate {
+    
+    func updateAlarmLabel(_ tagText: String) {
+        self.alarm.name = tagText
+    }
+}

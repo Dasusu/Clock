@@ -8,51 +8,66 @@
 import UIKit
 
 
-
-
+protocol DayForClockTableViewControllerDelegate: AnyObject {
+    func receiveSelectedDays(_ days: Set<Alarm.RepeatDays>)
+}
 
 class DayForClockTableViewController: UITableViewController,Storyboarded {
 
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
     // MARK: - Table view data source
-
-    var alarm = Alarm()
+    let allDays = Alarm.RepeatDays.allCases
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        selectRows(tableView: tableView, indexPath: indexPath)
-    }
-    func selectRows(tableView: UITableView, indexPath: IndexPath){
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cell = tableView.cellForRow(at: indexPath)
-        
-        if alarm.selectDays.contains(Alarm.RepeatDays(rawValue: indexPath.row)!){
-            alarm.selectDays.remove(Alarm.RepeatDays(rawValue: indexPath.row)!)
-        }else{
-            alarm.selectDays.insert(Alarm.RepeatDays(rawValue: indexPath.row)!)
+    var selectDays: Set<Alarm.RepeatDays> = [] {
+        didSet {
+            delegate?.receiveSelectedDays(selectDays)
         }
-        
-        cell?.accessoryType = (alarm.selectDays.contains(Alarm.RepeatDays(rawValue: indexPath.row)!)) ? .checkmark : .none
-        
-        
-        
     }
-        
+    
+    weak var delegate: DayForClockTableViewControllerDelegate?
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allDays.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        let day = allDays[indexPath.row]
+        cell.backgroundColor = .darkGray
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.text = day.dayString
+        let isCheck = selectDays.contains(day)
+        cell.accessoryType = isCheck ? .checkmark : .none
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let day = allDays[indexPath.row]
+        if selectDays.contains(day) {
+            selectDays.remove(day)
+        } else {
+            selectDays.insert(day)
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        selectRows(tableView: tableView, indexPath: indexPath)
+//    }
+//    func selectRows(tableView: UITableView, indexPath: IndexPath){
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let cell = tableView.cellForRow(at: indexPath)
+//
+//        if selectDays.contains(Alarm.RepeatDays(rawValue: indexPath.row)!){
+//            selectDays.remove(Alarm.RepeatDays(rawValue: indexPath.row)!)
+//        }else{
+//            selectDays.insert(Alarm.RepeatDays(rawValue: indexPath.row)!)
+//        }
+//
+//        cell?.accessoryType = (selectDays.contains(Alarm.RepeatDays(rawValue: indexPath.row)!)) ? .checkmark : .none
+//    }
+//
         
         
         
