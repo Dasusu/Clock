@@ -11,12 +11,22 @@ protocol TextFieldTestViewControllerDelegate: AnyObject {
     func updateAlarmLabel(_ tagText:String)
 }
 
-class TextFieldTestViewController: UIViewController, Storyboarded {
+class TextFieldTestViewController: UIViewController{
 
     
     weak var updateAlarmLabelDelegate: TextFieldTestViewControllerDelegate?
     
-    @IBOutlet weak var tagTextForClock: UITextField!
+    var tagTextForClock: UITextField = {
+       let tagTextForClock = UITextField()
+        tagTextForClock.text = "鬧鐘"
+        tagTextForClock.textColor = .white
+        tagTextForClock.backgroundColor = .darkGray
+        tagTextForClock.clearButtonMode = .whileEditing
+        tagTextForClock.borderStyle = .roundedRect
+        tagTextForClock.font = UIFont.systemFont(ofSize: 20)
+        tagTextForClock.translatesAutoresizingMaskIntoConstraints = false
+        return tagTextForClock
+    }()
     
     var tagText: String = "" {
         didSet{
@@ -29,9 +39,20 @@ class TextFieldTestViewController: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setView()
         tagTextForClock.text = tagText
 //        tagTextForClock.delegate = self
         // Do any additional setup after loading the view.
+    }
+    
+    func setView() {
+        self.view.backgroundColor = .black
+        self.title = "標籤"
+        self.navigationController?.navigationBar.tintColor = .orange
+        view.addSubview(tagTextForClock)
+        tagTextForClock.snp.makeConstraints { make in
+            make.center.left.right.equalTo(self.view)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

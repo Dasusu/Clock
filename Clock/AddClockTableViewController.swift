@@ -8,7 +8,9 @@
 import UIKit
 
 
-class AddClockTableViewController: UITableViewController, Storyboarded{
+class AddClockTableViewController: UITableViewController{
+    
+    var indexPath: IndexPath?
     
     
     //TODO: - 這裡用錯了，導致資料只能存一筆
@@ -21,29 +23,13 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
      
      接著你用ClockView.alarmArray.append(alarm)這個的時候，所有的ClockViewController參考都會被更改 -> alarmArray.count == 1
      然後你會dismiss，上面的AddClockTableViewController實體跟ClockViewController實體都會被消滅
-     
-     
-     所以我就是在一個 0 1 0 1 的 loop就對了
-     對 了解 
-     
-     
      */
-    var ClockView = ClockViewController.shared
     
+    // delegate，補個 protocol 抽象
+    var clockView: ClockViewController?
     
-    // MARK: Outlet thing
+    let addClockCustomHeader: AddClockCustomHeader = .init()
     
-    @IBOutlet weak var remindLaterSwitch: UISwitch!
-    @IBOutlet weak var repeatDetailLabel: UILabel!
-    @IBOutlet weak var tagDetailLabel: UILabel!
-    @IBOutlet weak var remindSoundDetailLabel: UILabel!
-    @IBOutlet weak var timeUIDatePicker: UIDatePicker!{
-        didSet {
-            timeUIDatePicker.setValue(UIColor.white, forKeyPath: "textColor")
-        }
-    }
-    
-
     var alarm = Alarm() {
         didSet {
             tableView.reloadData()
@@ -52,8 +38,42 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
     
     let cellData = AddClockCellData.CellData.allCases
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .black
+        setNavigation()
+        setTableView()
+        
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
     
     
+    
+    func setNavigation() {
+        self.title = "加入鬧鐘"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.barTintColor = .darkGray
+        
+        let cancelButton = UIBarButtonItem(title: "取消", style: .plain, target: self, action: #selector(cancel))
+        cancelButton.tintColor = .orange
+        self.navigationItem.leftBarButtonItem = cancelButton
+        
+        let saveButton = UIBarButtonItem(title: "儲存", style: .plain, target: self, action: #selector(save))
+        saveButton.tintColor = .orange
+        self.navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    func setTableView(){
+//        self.tableView.register(addClockCustomHeader.self, forHeaderFooterViewReuseIdentifier: "CostomHeader")
+        self.tableView.sectionHeaderHeight = 200
+        self.tableView.backgroundColor = .black
+    }
+
     // MARK: TableView
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,12 +113,12 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
-            let vc = DayForClockTableViewController.instantiate()
+            let vc = DayForClockTableViewController()
             vc.selectDays = alarm.selectDays
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = TextFieldTestViewController.instantiate()
+            let vc = TextFieldTestViewController()
             vc.tagText = alarm.name
 //            vc.alarm = alarm
             vc.updateAlarmLabelDelegate = self
@@ -114,7 +134,9 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
     
     // MARK: DatePicker
     
-    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return addClockCustomHeader
+    }
     
     
     
@@ -124,12 +146,17 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
     
     // MARK: Navgation Button
     
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
+    @objc func cancel() {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func Save(_ sender: UIBarButtonItem) {
-        ClockView.alarmArray.append(alarm)
+    @objc func save() {
+        alarm.date = addClockCustomHeader.datePicker.date
+        if let indexPath = indexPath {
+            clockView?.alarms[indexPath.row] = alarm
+        } else {
+            clockView?.alarms.append(alarm)
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -189,15 +216,6 @@ class AddClockTableViewController: UITableViewController, Storyboarded{
 //        }
 //    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
     // MARK: - Table view data source
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {

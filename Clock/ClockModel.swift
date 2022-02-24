@@ -53,6 +53,9 @@ struct Alarm {
     
     var dateString: String {
         let format = DateFormatter()
+        format.timeStyle = .short
+//        format.dateFormat = "HH:mm"
+        format.locale = Locale(identifier: "zh_Hant_TW")
         return format.string(from: date)
     }
     
@@ -76,6 +79,13 @@ struct Alarm {
         
     }
     
+    var alarmTitle: String {
+        if selectDays.isEmpty {
+            return name
+        } else {
+            return "\(name)，\(repeatText)"
+        }
+    }
 }
 
 //var data = ClockData() {
@@ -150,3 +160,8 @@ class AddClockCellData {
 //}
 //
 
+
+//extension Alarm: Equatable {
+//
+//
+//}

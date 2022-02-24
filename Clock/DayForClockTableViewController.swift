@@ -12,8 +12,8 @@ protocol DayForClockTableViewControllerDelegate: AnyObject {
     func receiveSelectedDays(_ days: Set<Alarm.RepeatDays>)
 }
 
-class DayForClockTableViewController: UITableViewController,Storyboarded {
-
+class DayForClockTableViewController: UITableViewController{
+ 
     // MARK: - Table view data source
     let allDays = Alarm.RepeatDays.allCases
     
@@ -24,6 +24,21 @@ class DayForClockTableViewController: UITableViewController,Storyboarded {
     }
     
     weak var delegate: DayForClockTableViewControllerDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setView()
+    }
+    
+    func setView() {
+        self.tableView.backgroundColor = .black
+        self.title = "重複"
+        self.navigationController?.navigationBar.tintColor = .orange
+        self.view.backgroundColor = .black
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allDays.count

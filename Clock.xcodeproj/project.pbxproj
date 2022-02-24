@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		41032F452785EE5500877E92 /* HiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41032F432785EE5500877E92 /* HiViewController.swift */; };
-		41032F462785EE5500877E92 /* HiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41032F442785EE5500877E92 /* HiViewController.xib */; };
 		41032F4C279805F800877E92 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41032F4B279805F800877E92 /* AlarmTableViewCell.swift */; };
 		4190711D2744E78300FD576B /* TextFieldTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190711C2744E78300FD576B /* TextFieldTestViewController.swift */; };
 		41907121274654E500FD576B /* DayForClockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41907120274654E500FD576B /* DayForClockTableViewController.swift */; };
@@ -16,19 +14,20 @@
 		41907125274655EC00FD576B /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41907124274655EC00FD576B /* ClockViewController.swift */; };
 		41907127274E954700FD576B /* ClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41907126274E954700FD576B /* ClockModel.swift */; };
 		4190712B2774676500FD576B /* StoryBoarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4190712A2774676500FD576B /* StoryBoarded.swift */; };
+		4197243527B6337600E60C2E /* AddClockCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4197243427B6337600E60C2E /* AddClockCustomHeader.swift */; };
 		41A7A02727B235CB005F0E4A /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A7A02627B235CB005F0E4A /* ClockView.swift */; };
+		41A7A02927B4E620005F0E4A /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A7A02827B4E620005F0E4A /* WorldClockViewController.swift */; };
+		41A7A02D27B4E66C005F0E4A /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A7A02C27B4E66C005F0E4A /* StopWatchViewController.swift */; };
+		41A7A02F27B4E684005F0E4A /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A7A02E27B4E684005F0E4A /* TimerViewController.swift */; };
+		41A7A03127B4E6EA005F0E4A /* MainTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A7A03027B4E6EA005F0E4A /* MainTabbarViewController.swift */; };
 		41C8FFBB272FA82A007B104A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FFBA272FA82A007B104A /* AppDelegate.swift */; };
 		41C8FFBD272FA82A007B104A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FFBC272FA82A007B104A /* SceneDelegate.swift */; };
-		41C8FFBF272FA82A007B104A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C8FFBE272FA82A007B104A /* ViewController.swift */; };
-		41C8FFC2272FA82A007B104A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41C8FFC0272FA82A007B104A /* Main.storyboard */; };
 		41C8FFC4272FA82A007B104A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C8FFC3272FA82A007B104A /* Assets.xcassets */; };
 		41C8FFC7272FA82A007B104A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41C8FFC5272FA82A007B104A /* LaunchScreen.storyboard */; };
 		F91F01DC9213AB2217C6CE6A /* Pods_Clock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978B796387918D9E0CCE9C3F /* Pods_Clock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		41032F432785EE5500877E92 /* HiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiViewController.swift; sourceTree = "<group>"; };
-		41032F442785EE5500877E92 /* HiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HiViewController.xib; sourceTree = "<group>"; };
 		41032F4B279805F800877E92 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlarmTableViewCell.swift; path = Clock/AlarmTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		4190711C2744E78300FD576B /* TextFieldTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldTestViewController.swift; sourceTree = "<group>"; };
 		41907120274654E500FD576B /* DayForClockTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayForClockTableViewController.swift; sourceTree = "<group>"; };
@@ -36,12 +35,15 @@
 		41907124274655EC00FD576B /* ClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
 		41907126274E954700FD576B /* ClockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockModel.swift; sourceTree = "<group>"; };
 		4190712A2774676500FD576B /* StoryBoarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryBoarded.swift; sourceTree = "<group>"; };
+		4197243427B6337600E60C2E /* AddClockCustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClockCustomHeader.swift; sourceTree = "<group>"; };
 		41A7A02627B235CB005F0E4A /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		41A7A02827B4E620005F0E4A /* WorldClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
+		41A7A02C27B4E66C005F0E4A /* StopWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
+		41A7A02E27B4E684005F0E4A /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		41A7A03027B4E6EA005F0E4A /* MainTabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarViewController.swift; sourceTree = "<group>"; };
 		41C8FFB7272FA82A007B104A /* Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C8FFBA272FA82A007B104A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41C8FFBC272FA82A007B104A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		41C8FFBE272FA82A007B104A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		41C8FFC1272FA82A007B104A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41C8FFC3272FA82A007B104A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41C8FFC6272FA82A007B104A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41C8FFC8272FA82A007B104A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,8 +75,6 @@
 		41C8FFAE272FA82A007B104A = {
 			isa = PBXGroup;
 			children = (
-				41032F432785EE5500877E92 /* HiViewController.swift */,
-				41032F442785EE5500877E92 /* HiViewController.xib */,
 				4190712A2774676500FD576B /* StoryBoarded.swift */,
 				41C8FFB9272FA82A007B104A /* Clock */,
 				41C8FFB8272FA82A007B104A /* Products */,
@@ -96,8 +96,6 @@
 			children = (
 				41C8FFBA272FA82A007B104A /* AppDelegate.swift */,
 				41C8FFBC272FA82A007B104A /* SceneDelegate.swift */,
-				41C8FFBE272FA82A007B104A /* ViewController.swift */,
-				41C8FFC0272FA82A007B104A /* Main.storyboard */,
 				41907124274655EC00FD576B /* ClockViewController.swift */,
 				419071222746554600FD576B /* AddClockTableViewController.swift */,
 				41907126274E954700FD576B /* ClockModel.swift */,
@@ -106,7 +104,13 @@
 				41C8FFC3272FA82A007B104A /* Assets.xcassets */,
 				41C8FFC5272FA82A007B104A /* LaunchScreen.storyboard */,
 				41C8FFC8272FA82A007B104A /* Info.plist */,
+				41032F4B279805F800877E92 /* AlarmTableViewCell.swift */,
 				4190711C2744E78300FD576B /* TextFieldTestViewController.swift */,
+				41A7A02827B4E620005F0E4A /* WorldClockViewController.swift */,
+				41A7A02C27B4E66C005F0E4A /* StopWatchViewController.swift */,
+				41A7A02E27B4E684005F0E4A /* TimerViewController.swift */,
+				41A7A03027B4E6EA005F0E4A /* MainTabbarViewController.swift */,
+				4197243427B6337600E60C2E /* AddClockCustomHeader.swift */,
 			);
 			path = Clock;
 			sourceTree = "<group>";
@@ -114,7 +118,6 @@
 		6D3E4EE5B40A753DBC85191E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				41032F4B279805F800877E92 /* AlarmTableViewCell.swift */,
 				D785C9A1CD2182B0229C0C68 /* Pods-Clock.debug.xcconfig */,
 				F061571E47C7EAA0E26C9705 /* Pods-Clock.release.xcconfig */,
 			);
@@ -182,9 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41C8FFC7272FA82A007B104A /* LaunchScreen.storyboard in Resources */,
-				41032F462785EE5500877E92 /* HiViewController.xib in Resources */,
 				41C8FFC4272FA82A007B104A /* Assets.xcassets in Resources */,
-				41C8FFC2272FA82A007B104A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,13 +241,16 @@
 				4190712B2774676500FD576B /* StoryBoarded.swift in Sources */,
 				41A7A02727B235CB005F0E4A /* ClockView.swift in Sources */,
 				41907127274E954700FD576B /* ClockModel.swift in Sources */,
+				41A7A03127B4E6EA005F0E4A /* MainTabbarViewController.swift in Sources */,
 				419071232746554600FD576B /* AddClockTableViewController.swift in Sources */,
+				4197243527B6337600E60C2E /* AddClockCustomHeader.swift in Sources */,
+				41A7A02D27B4E66C005F0E4A /* StopWatchViewController.swift in Sources */,
 				4190711D2744E78300FD576B /* TextFieldTestViewController.swift in Sources */,
-				41C8FFBF272FA82A007B104A /* ViewController.swift in Sources */,
-				41032F452785EE5500877E92 /* HiViewController.swift in Sources */,
 				41907125274655EC00FD576B /* ClockViewController.swift in Sources */,
 				41032F4C279805F800877E92 /* AlarmTableViewCell.swift in Sources */,
 				41C8FFBB272FA82A007B104A /* AppDelegate.swift in Sources */,
+				41A7A02927B4E620005F0E4A /* WorldClockViewController.swift in Sources */,
+				41A7A02F27B4E684005F0E4A /* TimerViewController.swift in Sources */,
 				41C8FFBD272FA82A007B104A /* SceneDelegate.swift in Sources */,
 				41907121274654E500FD576B /* DayForClockTableViewController.swift in Sources */,
 			);
@@ -255,14 +259,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		41C8FFC0272FA82A007B104A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				41C8FFC1272FA82A007B104A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		41C8FFC5272FA82A007B104A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -403,7 +399,6 @@
 				INFOPLIST_FILE = Clock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -433,7 +428,6 @@
 				INFOPLIST_FILE = Clock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
